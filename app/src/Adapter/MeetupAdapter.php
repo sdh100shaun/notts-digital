@@ -126,7 +126,7 @@ class MeetupAdapter implements AdapterInterface
         try {
 
             $groupInfo = $this->meetupRequest->fetchGroupInfo($groupUrlName);
-
+          
             if (!empty($groupInfo)) {
 
                 $this->groupInfo = new GroupInfo($groupInfo['name'], $groupInfo['description'], $groupInfo['group_photo']['highres_link']);
