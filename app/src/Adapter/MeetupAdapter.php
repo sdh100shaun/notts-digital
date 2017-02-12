@@ -74,7 +74,7 @@ class MeetupAdapter implements AdapterInterface
         if (!isset($this->config[$group])) {
             return [];
         }
-
+        
         $this->loadEventInfo($group);
 
         $this->loadGroupInfo($group);

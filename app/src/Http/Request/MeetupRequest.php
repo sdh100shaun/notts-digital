@@ -94,7 +94,7 @@ class MeetupRequest
      */
     public function fetchGroupInfo($groupUrlName)
     {
-        exit("getting info");
+      
         // if cached, return cache
         $cacheId = $groupUrlName . '_group-info';
         if (!$this->cache->contains($cacheId)) {
@@ -102,7 +102,7 @@ class MeetupRequest
             try {
 
                 $response =  $this->httpClient->getGroup(array('urlname' => $groupUrlName))->json();
-                
+              
                 $this->cache->save($cacheId, \json_encode($response));
             } catch (\Exception $e) {
                 // todo - add logging

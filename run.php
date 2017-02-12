@@ -29,11 +29,11 @@ $response = new Zend\Diactoros\Response\JsonResponse([
     'location'  => '',
     'event_url' => '',
     'iso_date' => '',
-    'next_event' => []
+    'next_event' => [],
 ]);
 
 if (array_key_exists('group', $params)) {
-
+  
     $group = $params['group'];
     $eventType = '';
 
