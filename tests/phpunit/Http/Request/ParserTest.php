@@ -3,6 +3,7 @@ namespace NottsDigital\Tests\Http\Request;
 
 use NottsDigital\Http\Request\MeetupParser;
 use NottsDigital\Http\Request\MeetupRequestParser;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Created by PhpStorm.
@@ -10,7 +11,7 @@ use NottsDigital\Http\Request\MeetupRequestParser;
  * Date: 10/02/2017
  * Time: 21:23
  */
-class ParserTest extends \PHPUnit_Framework_TestCase
+class ParserTest extends TestCase
 {
     /**
      * @var MeetupRequestParser

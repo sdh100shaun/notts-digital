@@ -11,7 +11,7 @@ namespace NottsDigital\Http\Request;
 use NottsDigital\Event\GroupInfo;
 
 /**
- * Class MeetupParser
+ * Class MeetupRequestParser
  * @package NottsDigital\Http\Request
  */
 class MeetupRequestParser implements ParserInterface
