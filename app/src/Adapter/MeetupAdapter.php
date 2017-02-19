@@ -62,6 +62,7 @@ class MeetupAdapter implements AdapterInterface
         $this->config = $config;
         $this->meetupRequest = $meetupRequest;
         $this->eventEntityCollection = $eventEntityCollection;
+
     }
 
 
@@ -124,7 +125,7 @@ class MeetupAdapter implements AdapterInterface
         $groupUrlName = $this->config[$group]['group_urlname'];
 
         try {
-
+            
             $groupInfo = $this->meetupRequest->fetchGroupInfo($groupUrlName);
           
             if (!empty($groupInfo)) {

@@ -12,9 +12,9 @@ namespace NottsDigital\Http\Request;
 interface ParserInterface
 {
     
-    public function groupInfo():array;
+    public function groupInfo():ParserInterface;
     
     public function setAttributes(array $attributes):ParserInterface;
     
-    
+    public function toArray():array;
 }

@@ -20,7 +20,7 @@ class ParserTest extends TestCase
     
     public function setUp()
     {
-        $this->parser = (new MeetupRequestParser(["group_photo"=>"photo","group_description"=>"description","name"=>"name","key"=>"key","test3"=>"test3"]))->setAttributes(["group_photo"=>"test1","group_description"=>"test2","name"=>"name from request","test3"=>["ss"=>"test"]]);
+        $this->parser = (new MeetupRequestParser(["group_photo"=>"group_photo","group_description"=>"description","name"=>"name","key"=>"key","test2"=>"test2","group_photo-stub"=>json_encode(["group_photo"=>["highres_link"=>""]])]))->setAttributes(["group_photo"=>"test1","group_description"=>"test2","name"=>"name from request","test3"=>["ss"=>"test"],"key"=>"Another test"]);
         parent::setUp();
     }
     
@@ -32,13 +32,24 @@ class ParserTest extends TestCase
         
     }
     
-    public function testGroupInfoPropertiesSet()
+    public function testGroupPropertiesSet()
     {
-        $actual = $this->parser->groupInfo();
+        $actual = $this->parser->toArray();
         $this->assertInternalType('array',$actual);
-        $this->assertArrayHasKey("photo",$actual);
+        var_dump($actual);
+        $this->assertArrayHasKey("group_photo",$actual);
         
     }
+    
+    public function testReturnsBlankForUnknownKey()
+    {
+        $actual = $this->parser->toArray();
+        $this->assertInternalType('array',$actual);
+        $this->assertArrayHasKey("test2",$actual);
+        $this->assertEquals("",$actual["test2"]);
+        
+    }
+    
     
     public function tearDown()
     {

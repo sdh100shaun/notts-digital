@@ -44,20 +44,27 @@ class MeetupRequest
      * @var LoggerInterface
      */
     private $log;
-
+    /**
+     * @var ParserFactory
+     */
+    private $parserFactory;
+    
     /**
      * MeetupRequest constructor.
      * @param MeetupKeyAuthClient $httpClient
      * @param Cache $cache
      * @param $uris
      * @param $config
+     * @param LoggerInterface $log
+     * @param ParserFactory $parserFactory
      */
     public function __construct(
         MeetupKeyAuthClient $httpClient,
         Cache $cache,
         $uris,
         $config,
-        LoggerInterface $log
+        LoggerInterface $log,
+        ParserFactory $parserFactory
     )
     {
         
@@ -66,6 +73,7 @@ class MeetupRequest
         $this->cache = $cache;
         $this->config = $config;
         $this->httpClient = $httpClient;
+        $this->parserFactory = $parserFactory;
     }
 
     /**
@@ -110,7 +118,8 @@ class MeetupRequest
             try {
 
                 $response =  $this->httpClient->getGroup(array('urlname' => $groupUrlName))->json();
-              
+               
+                $response = $this->parserFactory->getGroupInfo($this,$response);
                 $this->cache->save($cacheId, \json_encode($response));
             } catch (\Exception $e) {
                 $this->log->alert($e->getMessage());

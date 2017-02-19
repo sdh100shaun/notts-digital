@@ -45,6 +45,11 @@ $container['http.crawler'] = function($c) {
     return new Goutte\Client();
 };
 
+$container['http.parserfactory'] = function($c) {
+    return new \NottsDigital\Http\Request\ParserFactory();
+};
+
+
 $container['http.request'] = function($c){
     return Zend\Diactoros\ServerRequestFactory::fromGlobals();
 };
@@ -63,7 +68,9 @@ $container['meetup.request'] = function($c) {
         $c['file.cache'],
         $c['config']['meetups']['uris'],
         $c['groups']['meetups'],
-        $c['api.log']
+        $c['api.log'],
+        $c['http.parserfactory']
+        
     );
 
 };
